@@ -80,23 +80,22 @@ extern const uint8_t index_html_end[] asm("_binary_index_html_end");
 
 
 /* const httpd related values stored in ROM */
-const static char http_200_hdr[] = "200 OK";
-const static char http_302_hdr[] = "302 Found";
-const static char http_400_hdr[] = "400 Bad Request";
-const static char http_404_hdr[] = "404 Not Found";
-const static char http_503_hdr[] = "503 Service Unavailable";
-const static char http_location_hdr[] = "Location";
-const static char http_content_type_html[] = "text/html";
-const static char http_content_type_js[] = "text/javascript";
-const static char http_content_type_css[] = "text/css";
-const static char http_content_type_json[] = "application/json";
-const static char http_cache_control_hdr[] = "Cache-Control";
-const static char http_cache_control_no_cache[] = "no-store, no-cache, must-revalidate, max-age=0";
-const static char http_cache_control_cache[] = "public, max-age=31536000";
-const static char http_pragma_hdr[] = "Pragma";
-const static char http_pragma_no_cache[] = "no-cache";
-
-
+const char http_200_hdr[] = "200 OK";
+const char http_302_hdr[] = "302 Found";
+const char http_400_hdr[] = "400 Bad Request";
+const char http_404_hdr[] = "404 Not Found";
+const char http_503_hdr[] = "503 Service Unavailable";
+const char http_location_hdr[] = "Location";
+const char http_content_type_text[] = "text";
+const char http_content_type_html[] = "text/html";
+const char http_content_type_js[] = "text/javascript";
+const char http_content_type_css[] = "text/css";
+const char http_content_type_json[] = "application/json";
+const char http_cache_control_hdr[] = "Cache-Control";
+const char http_cache_control_no_cache[] = "no-store, no-cache, must-revalidate, max-age=0";
+const char http_cache_control_cache[] = "public, max-age=31536000";
+const char http_pragma_hdr[] = "Pragma";
+const char http_pragma_no_cache[] = "no-cache";
 
 esp_err_t http_app_set_handler_hook( httpd_method_t method,  esp_err_t (*handler)(httpd_req_t *r)  ){
 
@@ -113,7 +112,6 @@ esp_err_t http_app_set_handler_hook( httpd_method_t method,  esp_err_t (*handler
 	}
 
 }
-
 
 static esp_err_t http_server_delete_handler(httpd_req_t *req){
 
@@ -233,8 +231,10 @@ static esp_err_t http_server_get_handler(httpd_req_t *req){
 	bool access_from_sta_ip = host != NULL?strstr(host, wifi_manager_get_sta_ip_string()):false;
 	wifi_manager_unlock_sta_ip_string();
 
+	wifi_mode_t wifi_mode;
+	esp_wifi_get_mode(&wifi_mode);
 
-	if (host != NULL && !strstr(host, DEFAULT_AP_IP) && !access_from_sta_ip) {
+	if (host != NULL && !strstr(host, DEFAULT_AP_IP) && !access_from_sta_ip && wifi_mode != WIFI_MODE_STA) {
 
 		/* Captive Portal functionality */
 		/* 302 Redirect to IP of the access point */

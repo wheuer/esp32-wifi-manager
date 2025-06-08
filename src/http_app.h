@@ -48,6 +48,22 @@ extern "C" {
  */
 #define WEBAPP_LOCATION 					CONFIG_WEBAPP_LOCATION
 
+extern const char http_200_hdr[];
+extern const char http_302_hdr[];
+extern const char http_400_hdr[];
+extern const char http_404_hdr[];
+extern const char http_503_hdr[];
+extern const char http_location_hdr[];
+extern const char http_content_type_text[];
+extern const char http_content_type_html[];
+extern const char http_content_type_js[];
+extern const char http_content_type_css[];
+extern const char http_content_type_json[];
+extern const char http_cache_control_hdr[];
+extern const char http_cache_control_no_cache[];
+extern const char http_cache_control_cache[];
+extern const char http_pragma_hdr[];
+extern const char http_pragma_no_cache[];
 
 /** 
  * @brief spawns the http server 
