@@ -87,6 +87,7 @@ const char http_404_hdr[] = "404 Not Found";
 const char http_503_hdr[] = "503 Service Unavailable";
 const char http_location_hdr[] = "Location";
 const char http_content_type_text[] = "text";
+const char http_content_type_jpeg[] = "image/jpeg";
 const char http_content_type_html[] = "text/html";
 const char http_content_type_js[] = "text/javascript";
 const char http_content_type_css[] = "text/css";

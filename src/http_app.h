@@ -55,6 +55,7 @@ extern const char http_404_hdr[];
 extern const char http_503_hdr[];
 extern const char http_location_hdr[];
 extern const char http_content_type_text[];
+extern const char http_content_type_jpeg[];
 extern const char http_content_type_html[];
 extern const char http_content_type_js[];
 extern const char http_content_type_css[];
